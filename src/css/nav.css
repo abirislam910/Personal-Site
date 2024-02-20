@@ -1,0 +1,7 @@
+.active {
+    color: #421c6c; /* or any other styling to indicate the active link */
+}
+
+.inactive {
+    color: ghostwhite;
+}
