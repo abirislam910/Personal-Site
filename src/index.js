@@ -2,27 +2,40 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import {Header} from "./components/Header.js";
 import {Nav} from './components/Nav.js';
-import {Footer} from "./components/Footer.js";
-import {Routes, Route, BrowserRouter}
-    from 'react-router-dom';
+import {Contact} from "./components/Pages/Contact.js";
+import {BrowserRouter} from 'react-router-dom';
 import {Home} from './components/Pages/Home.js';
-import {Education} from './components/Pages/Education.js';
-import {Experience} from './components/Pages/Experience.js';
-import {Extras} from './components/Pages/Extras.js';
 import {Projects} from './components/Pages/Projects.js';
-import {Credits} from "./components/Pages/Credits";
 import styled from "styled-components";
 
-const PageWrapper = styled.div`
-    padding-left: 1%;
-`;
-
 const HeaderBox = styled.div`
-    background-color: mediumpurple;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border-radius: 1%;
+    position: fixed;
+    z-index: 102;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    background: #0C31F4;
+`;
+
+const HomeBox = styled.div`
+    height: 90vh;
+    width: 100vw;
+    z-index: 10;
+    background: linear-gradient(#0C31F4, #00A3FF, #3DD696, white);
+    margin-left: -8px;
+    margin-top: 9vh;
+`;
+
+const ContactBox = styled.div`
+    height: 95vh;
+    width: 100vw;
+    z-index: 10;
+    background: linear-gradient(white, #3DD696, #00A3FF, #0C31F4);
+    margin-left: -8px;
+    padding-top: 30vh;
 `;
 
 export function App() {
@@ -32,20 +45,13 @@ export function App() {
                 <Header/>
                 <Nav/>
             </HeaderBox>
-            <PageWrapper>
-                <Routes>
-                    <Route path='/aislam99/resume/build/index.html'  element={<Home />} />
-                    <Route path='/aislam99/resume/build/Home'  element={<Home />} />
-                    <Route path='/aislam99/resume/build/Education' element={<Education />} />
-                    <Route path='/aislam99/resume/build/Experience' element={<Experience />} />
-                    <Route path='/aislam99/resume/build/Extracurriculars' element={<Extras />} />
-                    <Route path='/aislam99/resume/build/Projects' element={<Projects />} />
-                    <Route path='/aislam99/resume/build/Credits' element={<Credits />} />
-                </Routes>
-            </PageWrapper>
-            <br></br>
-            <Footer />
-            <br></br>
+            <HomeBox>
+                <Home />
+            </HomeBox>
+            <Projects />
+            <ContactBox>
+                <Contact />
+            </ContactBox>
         </BrowserRouter>
     );
 }

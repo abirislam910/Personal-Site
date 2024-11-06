@@ -23,9 +23,9 @@ const Icon = styled.img`
 `;
 
 const StyledH1 = styled.h1`
-    padding-left: 10px;
-    text-align: center;
+    padding-left: 20px;
     color: ghostwhite;
+    font-size: 148%;
 `;
 
 const TextBox = styled.div`
@@ -33,20 +33,16 @@ const TextBox = styled.div`
     flex-direction: row;
 `;
 
-export function Header({button}) {
-    let Location = useLocation().pathname.substring(23);
-
-    if (Location === "index.html") {
-        Location = "Home";
-    }
+export function Header() {
 
     return (
         <header>
             <TextBox>
-                <StyledH1><em><strong>Abir Islam | {Location}</strong></em></StyledH1>
-                <IconBox><NavLink to={"https://www.linkedin.com/in/abir-islam-18a8331aa/"} target="_blank"><Icon src={linked} alt={"Linkedin"}/></NavLink> <br />
+                <StyledH1>Abir Islam | Home</StyledH1>
+                <IconBox>
+                    <NavLink to={"https://www.linkedin.com/in/abir-islam-18a8331aa/"} target="_blank"><Icon src={linked} alt={"Linkedin"}/></NavLink> <br />
                     <NavLink to={"https://github.com/abirislam910"} target="_blank"><Icon src={github} alt={"Github"} style={{paddingLeft : "40%"}}/></NavLink> <br />
-                    <NavLink to={"mailto:aislam99@bu.edu"} target="_blank"><Icon src={mail} alt={"Mail"} style={{paddingLeft : "80%"}}/></NavLink>
+                    <NavLink to={"mailto:aislam99@bu.edu"} target="_blank"><Icon src={mail} alt={"Mail"} style={{paddingLeft : "40%"}}/></NavLink>
                 </IconBox>
             </TextBox>
         </header>
