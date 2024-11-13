@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
-import MailIcon from "../../media/profile2.png";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 const PageBox = styled.div`
     display: flex;
@@ -15,13 +16,24 @@ const PageBox = styled.div`
 `;
 
 const Box = styled.div`
-    width: 400px;          /* Width of the box */
-    height: 400px;         /* Height of the box */
-    background-color: #f0f0f0; /* Background color of the box */
-    border: 5px solid #ccc; /* Border color and width */
-    border-radius: 15px;   /* Radius of rounded corners */
+    cursor: pointer;
+    width: 28vw;
+    height: 28vw;   
+    background-color: #f0f0f0; 
+    border: 5px solid #ccc; 
+    border-radius: 15px;   
     margin: 10px;
-    box-shadow: 0px 14px 18px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+`;
+
+const StyledPopup = styled(Popup)`
+  &-content {
+    width: 75vw;
+    height: 50vw;   
+    background-color: #f0f0f0; 
+    border: 5px solid #ccc; 
+    border-radius: 15px;   
+    margin: 10px;
+  }
 `;
 
 const Title = styled.h1`
@@ -49,11 +61,33 @@ const responsive = {
   };
 
 export function Projects() {
+
+  const [boxColor, setBoxColor] = useState('red');
+
+  const handleHover = () => {
+    setBoxColor('blue');
+  }
+
   return (
     <PageBox>
         <Title>Here are some projects I've worked on!</Title>
         <Carousel responsive={responsive}>
-            <Box></Box>
+            <StyledPopup  
+              trigger=
+                {<Box onMouseEnter={handleHover} style={{backgroundColor: boxColor}}></Box>} 
+              position="right center" 
+              modal
+              closeOnDocumentClick
+              >
+                {close => (
+                    <div>
+                      Content here | 
+                      <a className="close" onClick={close}>
+                        &times;
+                      </a>
+                    </div>
+                  )}
+            </StyledPopup>
             <Box></Box>
             <Box></Box>
             <Box></Box>

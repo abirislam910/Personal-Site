@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import {Link} from "react-router-dom";
+import React from "react";
+import {Link} from "react-scroll";
 import {styled} from "styled-components";
 import "../css/nav.css";
 
@@ -20,10 +20,13 @@ export function Nav() {
 
     return (
         <StyledNav>
-                <NavLink to="/aislam99/resume/build/Projects">
+                <NavLink to="Home" smooth={true} duration={500} offset={-80}>
+                    Home
+                </NavLink>
+                <NavLink to="Projects" smooth={true} duration={500} offset={-60}>
                     Projects
                 </NavLink>
-                <NavLink to="/aislam99/resume/build/Contact">
+                <NavLink to="Contacts" smooth={true} duration={500} offset={130}>
                     Contact
                 </NavLink>
         </StyledNav>

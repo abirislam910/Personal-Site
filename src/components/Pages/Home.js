@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ProfilePic from "../../media/profile2.png";
 import GearPic from "../../media/gear.png";
 import styled from "styled-components";
@@ -26,6 +26,7 @@ const StyledH1 = styled.h1`
 `;
 
 const MainP = styled.p`
+    margin-top: -30px;
     font-size: 130%; 
 `;
 
@@ -61,18 +62,46 @@ const Gear = styled.img`
 
 
 export function Home() {
+
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+
+    useEffect(() => {
+        const handleMouseMove = (event) => {
+            const { clientX: x, clientY: y } = event;
+            setPosition({ x, y });
+        };
+
+        window.addEventListener('mousemove', handleMouseMove);
+
+        return () => {
+        window.removeEventListener('mousemove', handleMouseMove);
+        };
+    }, []);
+
+    const moveStyle = {
+        transform: `translate(${-((position.x - window.innerWidth / 2) / 80)}px, ${-((position.y - window.innerHeight / 2) / 80)}px)`,
+        transition: 'transform 0.1s ease-out',
+        position: 'absolute',
+        top: '15%',
+        left: '-1%',
+        transformOrigin: 'center center',
+        display: 'flex',
+        flexDirection: 'row',
+        placeContent: 'evenly'
+      };
+
     return(
-        <MainBox>
+        <div style={moveStyle}>
             <StyleBoxIdk>
                 <StyledImage id="profile-image" src={ProfilePic} alt="Me, Abir Islam, the subject of this website!"></StyledImage>
                 <Gear id="gear-image" src={GearPic} alt="Just a gear lolz"></Gear>
             </StyleBoxIdk>
             <TextBox><strong><em>
                 <StyledH1>Hi! My name's Abir.</StyledH1>
-                <MainP> I'm a senior at Boston University studying computer science and I've been programming in some form since I was in elementary school,
-                        so to be able to turn n</MainP>
+                <MainP> This website is a collection of my personal projects, showcasing the skills, creativity, and passion I pour into everything I build.
+                        Whether you're interested in collaborating, learning more about the work I do, or just want to connect, feel free to reach out!</MainP>
                 </em></strong>
             </TextBox>
-        </MainBox>
+        </div>
     )
 }

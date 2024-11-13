@@ -8,6 +8,9 @@ import {Home} from './components/Pages/Home.js';
 import {Projects} from './components/Pages/Projects.js';
 import styled from "styled-components";
 
+const PageBox = styled.div`
+`;
+
 const HeaderBox = styled.div`
     display: flex;
     flex-direction: row;
@@ -24,34 +27,43 @@ const HomeBox = styled.div`
     height: 90vh;
     width: 100vw;
     z-index: 10;
-    background: linear-gradient(#0C31F4, #00A3FF, #3DD696, white);
+    background: linear-gradient(#0C31F4, #00A3FF, #3DD696, #3DD696, white);
     margin-left: -8px;
     margin-top: 9vh;
 `;
 
 const ContactBox = styled.div`
-    height: 95vh;
+    height: 90vh;
     width: 100vw;
     z-index: 10;
-    background: linear-gradient(white, #3DD696, #00A3FF, #0C31F4);
+    background: linear-gradient(white, #3DD696, #3DD696, #00A3FF, #0C31F4);
     margin-left: -8px;
-    padding-top: 30vh;
+    padding-top: 25vh;
 `;
+
+const ProjectBox = styled.div`
+
+`;
+
 
 export function App() {
     return(
         <BrowserRouter>
-            <HeaderBox>
-                <Header/>
-                <Nav/>
-            </HeaderBox>
-            <HomeBox>
-                <Home />
-            </HomeBox>
-            <Projects />
-            <ContactBox>
-                <Contact />
-            </ContactBox>
+            <PageBox id="PageBox">
+                <HeaderBox>
+                    <Header/>
+                    <Nav/>
+                </HeaderBox>
+                <HomeBox id="Home">
+                    <Home />
+                </HomeBox>
+                <ProjectBox id="Projects">
+                    <Projects />
+                </ProjectBox>
+                <ContactBox id="Contacts">
+                    <Contact/>
+                </ContactBox>
+            </PageBox>
         </BrowserRouter>
     );
 }
