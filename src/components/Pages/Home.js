@@ -1,107 +1,140 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import styled from "styled-components";
 import ProfilePic from "../../media/profile2.png";
 import GearPic from "../../media/gear.png";
-import styled from "styled-components";
+import { Container } from "../../styles/primitives.js";
+import { theme, mq } from "../../styles/theme.js";
+import { usePointerParallax } from "../../hooks/usePointerParallax.js";
 
-const MainBox = styled.div`
-    display: flex;
-    flex-direction: row;
-    place-content: space-evenly;
-    padding-top: 9vh;
+const Hero = styled(Container)`
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: center;
+    gap: clamp(24px, 5vw, 72px);
+    min-height: calc(100vh - var(--header-height));
+    padding-block: clamp(48px, 8vh, 96px);
+
+    ${mq.lg} {
+        grid-template-columns: minmax(0, 1fr);
+        justify-items: center;
+        text-align: center;
+        gap: 32px;
+    }
 `;
 
-const TextBox = styled.div`
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    place-content: space-evenly;
-    color: ghostwhite;
-    padding-left: 3.5vw;
-    padding-right: 4vw;
-`;
-
-const StyledH1 = styled.h1`
-    text-decoration: underline;
-    font-size: 400%;
-`;
-
-const MainP = styled.p`
-    margin-top: -30px;
-    font-size: 130%; 
-`;
-
-const StyledImage = styled.img`
+// Both layers drift with the pointer; the portrait moves further than the text
+// so the two read as separate planes.
+const Portrait = styled.div`
     position: relative;
-    z-index: 101;
-    max-width: 100%;
+    width: 140%;
+    transform: translate3d(
+        calc(var(--parallax-x, 0px) * 1.6),
+        calc(var(--parallax-y, 0px) * 1.6),
+        0
+    );
+    transition: transform 0.2s ease-out;
+
+    /* Soft halo that lifts the cut-out portrait off the gradient. */
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 6% 4% -4%;
+        border-radius: 50%;
+        background: radial-gradient(
+            circle at 50% 55%,
+            rgba(248, 248, 255, 0.30),
+            rgba(248, 248, 255, 0) 68%
+        );
+    }
+
+    ${mq.lg} {
+        max-width: 300px;
+    }
+
+    ${mq.sm} {
+        max-width: 236px;
+    }
 `;
 
-const StyleBoxIdk = styled.div`
+const Photo = styled.img`
     position: relative;
-    max-width: 40%;
+    z-index: 2;
+    width: 100%;
+    filter: drop-shadow(0 24px 40px rgba(6, 14, 70, 0.35));
 `;
 
 const Gear = styled.img`
     position: absolute;
-    z-index: 100;
-    left: 15vw;
-    top: 5vh;
-    max-width: 60%;
-    animation: rotation 30s infinite linear;
+    z-index: 1;
+    top: -12%;
+    right: -26%;
+    width: 60%;
+    opacity: 0.36;
+    animation: heroGearSpin 34s linear infinite;
 
-    @keyframes rotation {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+    @keyframes heroGearSpin {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    ${mq.lg} {
+        right: -14%;
+        width: 52%;
+    }
 `;
 
+const Copy = styled.div`
+    min-width: 0;
+    color: ${theme.color.onBrand};
+    transform: translate3d(
+        calc(var(--parallax-x, 0px) * 0.5),
+        calc(var(--parallax-y, 0px) * 0.5),
+        0
+    );
+    transition: transform 0.2s ease-out;
+`;
 
+const Title = styled.h1`
+    font-size: clamp(2.1rem, 1.5rem + 2.6vw, 3.4rem);
+    text-wrap: balance;
+`;
+
+const Lede = styled.p`
+    max-width: 52ch;
+    margin-top: 20px;
+    font-size: clamp(1.02rem, 0.96rem + 0.4vw, 1.2rem);
+    line-height: 1.7;
+    color: rgba(248, 248, 255, 0.9);
+
+    ${mq.lg} {
+        margin-inline: auto;
+    }
+`;
 
 export function Home() {
+    const parallaxRef = usePointerParallax(14);
 
-    const [position, setPosition] = useState({ x: 0, y: 0 });
-
-    useEffect(() => {
-        const handleMouseMove = (event) => {
-            const { clientX: x, clientY: y } = event;
-            setPosition({ x, y });
-        };
-
-        window.addEventListener('mousemove', handleMouseMove);
-
-        return () => {
-        window.removeEventListener('mousemove', handleMouseMove);
-        };
-    }, []);
-
-    const moveStyle = {
-        transform: `translate(${-((position.x - window.innerWidth / 2) / 80)}px, ${-((position.y - window.innerHeight / 2) / 80)}px)`,
-        transition: 'transform 0.1s ease-out',
-        position: 'absolute',
-        top: '15%',
-        left: '-1%',
-        transformOrigin: 'center center',
-        display: 'flex',
-        flexDirection: 'row',
-        placeContent: 'evenly'
-      };
-
-    return(
-        <div style={moveStyle}>
-            <StyleBoxIdk>
-                <StyledImage id="profile-image" src={ProfilePic} alt="Me, Abir Islam, the subject of this website!"></StyledImage>
-                <Gear id="gear-image" src={GearPic} alt="Just a gear lolz"></Gear>
-            </StyleBoxIdk>
-            <TextBox><strong><em>
-                <StyledH1>Hi! My name's Abir.</StyledH1>
-                <MainP> This website is a collection of my personal projects, showcasing the skills, creativity, and passion I pour into everything I build.
-                        Whether you're interested in collaborating, learning more about the work I do, or just want to connect, feel free to reach out!</MainP>
-                </em></strong>
-            </TextBox>
-        </div>
-    )
+    return (
+        <Hero ref={parallaxRef}>
+            <Portrait>
+                <Gear src={GearPic} alt="" aria-hidden="true" />
+                <Photo src={ProfilePic} alt="Abir Islam" />
+            </Portrait>
+            <Copy>
+                <Title>Hi! My name&apos;s Abir.</Title>
+                <Lede>
+                    This website is a collection of my personal projects, showcasing the
+                    skills, creativity, and passion I pour into everything I build.
+                    Whether you&apos;re interested in collaborating, learning more about
+                    the work I do, or just want to connect, feel free to reach out!
+                </Lede>
+            </Copy>
+        </Hero>
+    );
 }
+
+export default Home;

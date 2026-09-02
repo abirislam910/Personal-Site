@@ -1,72 +1,88 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import {Header} from "./components/Header.js";
-import {Nav} from './components/Nav.js';
-import {Contact} from "./components/Pages/Contact.js";
-import {BrowserRouter} from 'react-router-dom';
-import {Home} from './components/Pages/Home.js';
-import {Projects} from './components/Pages/Projects.js';
 import styled from "styled-components";
+import { Header } from "./components/Header.js";
+import { Nav } from "./components/Nav.js";
+import { Home } from "./components/Pages/Home.js";
+import { Projects } from "./components/Pages/Projects.js";
+import { Contact } from "./components/Pages/Contact.js";
+import { GlobalStyle } from "./styles/GlobalStyle.js";
+import { theme, mq } from "./styles/theme.js";
 
-const PageBox = styled.div`
-`;
-
-const HeaderBox = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+const Bar = styled.header`
     position: fixed;
-    z-index: 102;
+    z-index: 50;
     top: 0;
     left: 0;
-    width: 100vw;
-    background: #0C31F4;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    height: var(--header-height);
+    padding-inline: ${theme.layout.gutter};
+    background: ${theme.color.brand};
+    border-bottom: 1px solid rgba(248, 248, 255, 0.12);
+
+    /* One row is too tight below ~540px, so the bar becomes two centred rows
+       rather than shrinking the type to an unreadable size. */
+    ${mq.sm} {
+        flex-direction: column;
+        justify-content: center;
+        gap: 4px;
+        padding-inline: 16px;
+    }
 `;
 
-const HomeBox = styled.div`
-    height: 90vh;
-    width: 100vw;
-    z-index: 10;
-    background: linear-gradient(#0C31F4, #00A3FF, #3DD696, #3DD696, white);
-    margin-left: -8px;
-    margin-top: 9vh;
+// Each section owns its own background, so the page reads as one continuous
+// gradient: brand at the top, light through the middle, brand again at the end.
+const HomeSection = styled.section`
+    padding-top: var(--header-height);
+    background: linear-gradient(
+        180deg,
+        ${theme.color.brand} 0%,
+        #1430D6 55%,
+        ${theme.color.brandSoft} 88%,
+        ${theme.color.surface} 100%
+    );
 `;
 
-const ContactBox = styled.div`
-    height: 90vh;
-    width: 100vw;
-    z-index: 10;
-    background: linear-gradient(white, #3DD696, #3DD696, #00A3FF, #0C31F4);
-    margin-left: -8px;
-    padding-top: 25vh;
+const ProjectsSection = styled.section`
+    background: ${theme.color.surface};
 `;
 
-const ProjectBox = styled.div`
-
+const ContactSection = styled.section`
+    background: linear-gradient(
+        180deg,
+        ${theme.color.surface} 0,
+        ${theme.color.brandSoft} 150px,
+        #1430D6 300px,
+        ${theme.color.brand} 460px
+    );
 `;
-
 
 export function App() {
-    return(
-        <BrowserRouter>
-            <PageBox id="PageBox">
-                <HeaderBox>
-                    <Header/>
-                    <Nav/>
-                </HeaderBox>
-                <HomeBox id="Home">
+    return (
+        <>
+            <GlobalStyle />
+            <Bar>
+                <Header />
+                <Nav />
+            </Bar>
+            <main>
+                <HomeSection id="Home">
                     <Home />
-                </HomeBox>
-                <ProjectBox id="Projects">
+                </HomeSection>
+                <ProjectsSection id="Projects">
                     <Projects />
-                </ProjectBox>
-                <ContactBox id="Contacts">
-                    <Contact/>
-                </ContactBox>
-            </PageBox>
-        </BrowserRouter>
+                </ProjectsSection>
+                <ContactSection id="Contacts">
+                    <Contact />
+                </ContactSection>
+            </main>
+        </>
     );
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App/>)
+root.render(<App />);
