@@ -7,12 +7,13 @@ import { theme, mq } from "../../styles/theme.js";
 import { usePointerParallax } from "../../hooks/usePointerParallax.js";
 
 const Hero = styled(Container)`
+    max-width: min(max(${theme.layout.maxWidth}, 80vw), 2000px);
     display: grid;
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    grid-template-columns: minmax(0, 6fr) minmax(0, 7fr);
     align-items: center;
     gap: clamp(24px, 5vw, 72px);
     min-height: calc(100vh - var(--header-height));
-    padding-block: clamp(48px, 8vh, 96px);
+    padding-bottom: clamp(48px, 10vh, 160px);
 
     ${mq.lg} {
         grid-template-columns: minmax(0, 1fr);
@@ -26,7 +27,9 @@ const Hero = styled(Container)`
 // so the two read as separate planes.
 const Portrait = styled.div`
     position: relative;
-    width: 140%;
+    width: 130%;
+    right: 20%;
+    max-width: 700px;
     transform: translate3d(
         calc(var(--parallax-x, 0px) * 1.6),
         calc(var(--parallax-y, 0px) * 1.6),
@@ -48,11 +51,11 @@ const Portrait = styled.div`
     }
 
     ${mq.lg} {
-        max-width: 300px;
+        max-width: 360px;
     }
 
     ${mq.sm} {
-        max-width: 236px;
+        max-width: 280px;
     }
 `;
 
@@ -66,9 +69,9 @@ const Photo = styled.img`
 const Gear = styled.img`
     position: absolute;
     z-index: 1;
-    top: -12%;
-    right: -26%;
-    width: 60%;
+    top: 5%;
+    right: 10%;
+    width: 44%;
     opacity: 0.36;
     animation: heroGearSpin 34s linear infinite;
 
@@ -82,8 +85,8 @@ const Gear = styled.img`
     }
 
     ${mq.lg} {
-        right: -14%;
-        width: 52%;
+        right: -12%;
+        width: 46%;
     }
 `;
 
@@ -99,14 +102,14 @@ const Copy = styled.div`
 `;
 
 const Title = styled.h1`
-    font-size: clamp(2.1rem, 1.5rem + 2.6vw, 3.4rem);
+    font-size: clamp(2.1rem, 3rem + 1vw, 4rem);
     text-wrap: balance;
 `;
 
 const Lede = styled.p`
-    max-width: 52ch;
-    margin-top: 20px;
-    font-size: clamp(1.02rem, 0.96rem + 0.4vw, 1.2rem);
+    max-width: 54ch;
+    margin-top: 24px;
+    font-size: clamp(1.05rem, 1.1rem + 0.55vw, 2rem);
     line-height: 1.7;
     color: rgba(248, 248, 255, 0.9);
 

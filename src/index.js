@@ -42,7 +42,7 @@ const HomeSection = styled.section`
         180deg,
         ${theme.color.brand} 0%,
         #1430D6 55%,
-        ${theme.color.brandSoft} 88%,
+        ${theme.color.brandSoft} 90%,
         ${theme.color.surface} 100%
     );
 `;
