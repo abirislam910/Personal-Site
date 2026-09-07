@@ -45,8 +45,8 @@ const Portrait = styled.div`
         border-radius: 50%;
         background: radial-gradient(
             circle at 50% 55%,
-            rgba(248, 248, 255, 0.30),
-            rgba(248, 248, 255, 0) 68%
+            rgba(252, 248, 255, 0.3),
+            rgba(252, 248, 255, 0) 68%
         );
     }
 
@@ -63,7 +63,7 @@ const Photo = styled.img`
     position: relative;
     z-index: 2;
     width: 100%;
-    filter: drop-shadow(0 24px 40px rgba(6, 14, 70, 0.35));
+    filter: drop-shadow(0 24px 40px rgba(54, 6, 70, 0.35));
 `;
 
 const Gear = styled.img`
@@ -72,7 +72,6 @@ const Gear = styled.img`
     top: 5%;
     right: 10%;
     width: 44%;
-    opacity: 0.36;
     animation: heroGearSpin 34s linear infinite;
 
     @keyframes heroGearSpin {
@@ -111,7 +110,7 @@ const Lede = styled.p`
     margin-top: 24px;
     font-size: clamp(1.05rem, 1.1rem + 0.55vw, 2rem);
     line-height: 1.7;
-    color: rgba(248, 248, 255, 0.9);
+    color: rgba(251, 248, 255, 0.9);
 
     ${mq.lg} {
         margin-inline: auto;

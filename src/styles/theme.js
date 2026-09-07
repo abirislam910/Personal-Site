@@ -3,12 +3,13 @@
 
 export const theme = {
     color: {
-        brand: "#0C31F4",
-        brandDeep: "#081C9E",
-        brandSoft: "#4C63E8",
-        ink: "#0B1020",
-        inkSoft: "#525B73",
-        surface: "#F8F8FF",
+        brand: "#361f87",
+        brandTransparent: "#361f87ee",
+        brandDeep: "#ff9d00",
+        brandSoft: "#6e35d9db",
+        ink: "#100b20",
+        inkSoft: "#605273",
+        surface: "#f5edff",
         card: "#FFFFFF",
         line: "#E2E6F3",
         onBrand: "#F8F8FF",

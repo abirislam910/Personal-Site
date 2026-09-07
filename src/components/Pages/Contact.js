@@ -75,7 +75,7 @@ const fieldStyles = `
         outline: none;
         background: ${theme.color.card};
         border-color: ${theme.color.brand};
-        box-shadow: 0 0 0 3px rgba(12, 49, 244, 0.15);
+        box-shadow: 0 0 0 3px rgba(140, 12, 244, 0.15);
     }
 `;
 

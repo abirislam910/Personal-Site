@@ -21,8 +21,7 @@ const Bar = styled.header`
     gap: 16px;
     height: var(--header-height);
     padding-inline: ${theme.layout.gutter};
-    background: ${theme.color.brand};
-    border-bottom: 1px solid rgba(248, 248, 255, 0.12);
+    background: ${theme.color.brandTransparent};
 
     /* One row is too tight below ~540px, so the bar becomes two centred rows
        rather than shrinking the type to an unreadable size. */
@@ -41,7 +40,6 @@ const HomeSection = styled.section`
     background: linear-gradient(
         180deg,
         ${theme.color.brand} 0%,
-        #1430D6 55%,
         ${theme.color.brandSoft} 90%,
         ${theme.color.surface} 100%
     );
@@ -56,7 +54,6 @@ const ContactSection = styled.section`
         180deg,
         ${theme.color.surface} 0,
         ${theme.color.brandSoft} 150px,
-        #1430D6 300px,
         ${theme.color.brand} 460px
     );
 `;
