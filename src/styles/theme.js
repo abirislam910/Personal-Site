@@ -11,7 +11,7 @@ export const theme = {
         inkSoft: "#605273",
         surface: "#f5edff",
         card: "#FFFFFF",
-        line: "#E2E6F3",
+        line: "#ffffff",
         onBrand: "#F8F8FF",
         onBrandSoft: "rgba(248, 248, 255, 0.78)",
     },

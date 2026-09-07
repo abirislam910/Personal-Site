@@ -5,7 +5,8 @@ import Popup from "reactjs-popup";
 import "react-multi-carousel/lib/styles.css";
 import { projects } from "../../data/projects.js";
 import { Container, SectionTitle } from "../../styles/primitives.js";
-import { theme } from "../../styles/theme.js";
+import github from "../../media/github.png";
+import { theme, mq } from "../../styles/theme.js";
 
 const responsive = {
     superLargeDesktop: { breakpoint: { max: 4000, min: 3000 }, items: 4 },
@@ -16,6 +17,17 @@ const responsive = {
 
 const Section = styled(Container)`
     padding-block: clamp(64px, 12vh, 128px);
+`;
+
+const Icon = styled.img`
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+
+    ${mq.sm} {
+        width: 17px;
+        height: 17px;
+    }
 `;
 
 // Restyles react-multi-carousel's own arrow and dot classes so the control
@@ -30,6 +42,7 @@ const CarouselFrame = styled.div`
     .react-multiple-carousel__arrow {
         min-width: 40px;
         min-height: 40px;
+        z-index: 10;
         background: ${theme.color.card};
         border: 1px solid ${theme.color.line};
         box-shadow: ${theme.shadow.md};
@@ -104,6 +117,13 @@ const CardCover = styled.div`
         );
         background-size: 14px 14px;
     }
+`;
+
+const CardCoverImage = styled.img`
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 `;
 
 const CardBody = styled.div`
@@ -239,7 +259,14 @@ function ProjectCard({ project }) {
             closeOnEscape
             trigger={
                 <Card type="button" aria-label={`Read more about ${project.title}`}>
-                    <CardCover aria-hidden="true" />
+                    {project.cover ? (
+                        <CardCoverImage
+                            src={project.cover}
+                            alt={project.title}
+                        />
+                    ) : (
+                        <CardCover aria-hidden="true" />
+                    )}
                     <CardBody>
                         <CardTitle>{project.title}</CardTitle>
                         <CardBlurb>{project.blurb}</CardBlurb>
@@ -271,17 +298,30 @@ function ProjectCard({ project }) {
                             ))}
                         </ModalTags>
                     )}
-                    {project.link && (
-                        <ModalFooter>
-                            <ModalLink
-                                href={project.link}
-                                target="_blank"
-                                rel="noreferrer noopener"
-                            >
-                                Visit project
-                            </ModalLink>
-                        </ModalFooter>
-                    )}
+                    <TagRow>
+                        {project.github && (
+                            <ModalFooter>
+                                <ModalLink
+                                    href={project.github}
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                >
+                                    <Icon src={github} alt="" aria-hidden="true" />
+                                </ModalLink>
+                            </ModalFooter>
+                        )}
+                        {project.link && (
+                            <ModalFooter>
+                                <ModalLink
+                                    href={project.link}
+                                    target="_blank"
+                                    rel="noreferrer noopener"
+                                >
+                                    Visit project
+                                </ModalLink>
+                            </ModalFooter>
+                        )}
+                    </TagRow>
                 </div>
             )}
         </Modal>
