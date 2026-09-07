@@ -6,6 +6,7 @@ import { Nav } from "./components/Nav.js";
 import { Home } from "./components/Pages/Home.js";
 import { Projects } from "./components/Pages/Projects.js";
 import { Contact } from "./components/Pages/Contact.js";
+import { Footer } from "./components/Footer.js";
 import { GlobalStyle } from "./styles/GlobalStyle.js";
 import { theme, mq } from "./styles/theme.js";
 
@@ -77,6 +78,7 @@ export function App() {
                     <Contact />
                 </ContactSection>
             </main>
+            <Footer />
         </>
     );
 }
