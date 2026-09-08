@@ -52,10 +52,16 @@ const Portrait = styled.div`
 
     ${mq.lg} {
         max-width: 360px;
+        align-self: center;
+        right: 0;
+        width: 100%;
     }
 
     ${mq.sm} {
         max-width: 280px;
+        align-self: center;
+        right: 0;
+        width: 100%;
     }
 `;
 
@@ -84,8 +90,8 @@ const Gear = styled.img`
     }
 
     ${mq.lg} {
-        right: -12%;
-        width: 46%;
+        right: 10%;
+        width: 44%;
     }
 `;
 

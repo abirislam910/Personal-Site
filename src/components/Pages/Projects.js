@@ -36,17 +36,17 @@ const CarouselFrame = styled.div`
     margin-top: clamp(32px, 5vh, 56px);
 
     .carousel-item {
-        padding: 8px 12px 40px;
+        padding: 8px 12px 48px;
     }
 
     .react-multiple-carousel__arrow {
+        top: 93%;
         min-width: 40px;
-        min-height: 40px;
+        min-height: 30px;
         z-index: 10;
         background: ${theme.color.card};
         border: 1px solid ${theme.color.line};
-        box-shadow: ${theme.shadow.md};
-        transition: background-color 0.2s ease, transform 0.2s ease;
+        transition: background-color 0.2s ease
     }
 
     .react-multiple-carousel__arrow:hover {
