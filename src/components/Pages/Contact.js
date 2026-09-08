@@ -16,11 +16,11 @@ const Section = styled(Container)`
     align-items: center;
     /* Clears the gradient's fade band so the heading sits on solid blue. */
     padding-top: clamp(150px, 24vh, 240px);
-    padding-bottom: clamp(64px, 12vh, 128px);
 `;
 
 const Title = styled(SectionTitle)`
     color: ${theme.color.onBrand};
+    padding-top: 15px;
 `;
 
 // The form sits on a light card so the inputs stay legible against the
@@ -164,7 +164,7 @@ export function Contact() {
 
     return (
         <Section>
-            <Title>Contact Me Directly!</Title>
+            <Title id="Contacts">Contact Me Directly!</Title>
             <Card ref={form} onSubmit={sendEmail}>
                 <Field>
                     <Label htmlFor="contact-name">Name</Label>
@@ -215,7 +215,7 @@ export function Contact() {
                 {status === "error" && (
                     <Status role="alert" $tone="error">
                         Something went wrong sending that. Please try again, or email me
-                        directly at aislam99@bu.edu.
+                        directly at abirislamdev910@gmail.com.
                     </Status>
                 )}
             </Card>

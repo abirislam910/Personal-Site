@@ -74,7 +74,7 @@ export function App() {
                 <ProjectsSection id="Projects">
                     <Projects />
                 </ProjectsSection>
-                <ContactSection id="Contacts">
+                <ContactSection>
                     <Contact />
                 </ContactSection>
             </main>

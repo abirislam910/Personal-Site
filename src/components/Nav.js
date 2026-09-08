@@ -96,7 +96,7 @@ export function Nav() {
                     key={id}
                     to={id}
                     smooth={true}
-                    duration={500}
+                    duration={300}
                     offset={-headerHeight}
                     $active={activeId === id}
                     aria-current={activeId === id ? "true" : undefined}

@@ -152,6 +152,7 @@ const CardAction = styled.span`
 
     ${Card}:hover & {
         text-decoration: underline;
+        color: ${theme.color.brandDeep};
     }
 `;
 
@@ -180,6 +181,9 @@ const Modal = styled(Popup)`
 
     &-content {
         width: min(560px, calc(100vw - 32px));
+        max-height: 85vh;
+        overflow-y: auto;
+        overscroll-behavior: contain;
         padding: clamp(24px, 4vw, 36px);
         background: ${theme.color.card};
         border: 1px solid ${theme.color.line};
@@ -331,7 +335,7 @@ function ProjectCard({ project }) {
 export function Projects() {
     return (
         <Section>
-            <SectionTitle>Here are some projects I&apos;ve worked on!</SectionTitle>
+            <SectionTitle>Here are some of my projects!</SectionTitle>
             <CarouselFrame>
                 <Carousel
                     responsive={responsive}
